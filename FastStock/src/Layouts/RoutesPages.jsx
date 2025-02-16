@@ -1,4 +1,4 @@
-const RoutesPages = (children) => {
+const RoutesPages = ({children}) => {
     return (
         <>
             {children}

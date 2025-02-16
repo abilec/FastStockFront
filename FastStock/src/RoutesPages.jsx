@@ -2,11 +2,13 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import RoutesPages from "./Layouts/RoutesPages";
 
 // Pages
+import Inicio from "./Pages/inicio";
+import Inventario from "./Pages/inventario";
 
 // Componente para rutas protegidas
 const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem("token");
-    return token ? children : <Navigate to="/login" replace />;
+    return token ? children : <Navigate to="/inicio" replace />;
 };
 
 const RouterApp = () => {
@@ -15,28 +17,28 @@ const RouterApp = () => {
             <Routes>
                 {/* Ruta pública */}
                 <Route
-                    path="/login"
+                    path="/inicio"
                     element={
                         <RoutesPages>
-                            <Login />
+                            <Inicio />
                         </RoutesPages>
                     }
                 />
 
                 {/* Ruta protegida */}
                 <Route
-                    path="/principal"
+                    path="/inventario"
                     element={
                         <ProtectedRoute>
                             <RoutesPages>
-                                <Principal />
+                                <Inventario />
                             </RoutesPages>
                         </ProtectedRoute>
                     }
                 />
                
                 {/* Ruta por defecto */}
-                <Route path="*" element={<Navigate to="/login" replace />} />
+                <Route path="*" element={<Navigate to="/inicio" replace />} />
             </Routes>
         </BrowserRouter>
     );
