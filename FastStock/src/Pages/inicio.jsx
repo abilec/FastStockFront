@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Input from "../Components/input"
 import { useNavigate } from "react-router-dom";
 import { Acceder } from "../Services/Auth";
+
 const Inicio = () => {
     const [datos, setDatos] = useState({ nombre: "", clave: "" });
     const navigate = useNavigate();
