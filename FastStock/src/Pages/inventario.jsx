@@ -1,6 +1,8 @@
 import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
-import { Listar } from "../Services/Producto";
+import { Listar, Eliminar } from "../Services/Producto";
+import Semaforo from "../Components/semaforo";
+import Modal from "../Components/modal";
 
 const Inventario = () => {
     const [tokenUser, setTokenUser] = useState();
@@ -46,9 +48,20 @@ const Inventario = () => {
         traerProductos();
     }, [])
 
+    const Borrar = async (id_producto) =>{
+        try {
+            if(id_producto){
+                await Eliminar(id_producto);
+            }else{
+                console.log("No id: "+id_producto);
+            }
+        } catch (error) {
+            console.error("Error, no se pudo eliminar el producto: " + error);
+        }
+    }
+    
     return (
         <div>
-            <h1>Pasaste</h1>
             <div className="card" id="cardInicio">
                 <div className="card-body">
                     <table className="table">
@@ -68,8 +81,10 @@ const Inventario = () => {
                                         <td>{p.nombre}</td>
                                         <td>{p.cantidad}</td>
                                         <td>{p.minimo}</td>
-                                        <td>&nbsp;</td>
-                                        <td>{p.id_producto}</td>
+                                        <td>{<Semaforo cant={p.cantidad} min={p.minimo}/>}</td>
+                                        <td><button type="button" className="btn btn-outline-danger" onClick={()=>Borrar(p.id_producto)}><i className="bi bi-clipboard-x"></i></button>
+                                            <button type="button" className="btn btn-outline-warning"  ><i className="bi bi-clipboard"></i></button>
+                                        </td>
                                     </tr>
                                 ))
                             ) : (
