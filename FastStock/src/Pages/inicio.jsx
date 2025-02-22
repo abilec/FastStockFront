@@ -30,7 +30,6 @@ const Inicio = () => {
                     </div>
                     <div className="card-body" >
                         <form>
-                            {/* {(e) => { setData({ ...data, login: e.target.value }) }} */}
                             <Input for={"nombreUser"} label={"Nombre de usuario"} type={"text"} onChange={(e) => { setDatos({ ...datos, nombre: e.target.value }) }} />
                             <Input for={"clave"} label={"Clave"} type={"password"} onChange={(e) => { setDatos({ ...datos, clave: e.target.value }) }} />
                             <br />
