@@ -1,8 +1,8 @@
 const Input = (repo) => {
-    return(
+    return (
         <div className="mb-3">
-            <label htmlFor={repo.for} className="form-label">{repo.label}</label>
-            <input type={repo.type} className="form-control" onChange={repo.onChange}/>
+            <label className="form-label">{repo.label}</label>
+            <input name={repo.name} type={repo.type} className="form-control" onChange={repo.onChange} value={repo?.valor} />
         </div>
     )
 }
