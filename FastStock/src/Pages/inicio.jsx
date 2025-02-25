@@ -30,8 +30,8 @@ const Inicio = () => {
                     </div>
                     <div className="card-body" >
                         <form>
-                            <Input for={"nombreUser"} label={"Nombre de usuario"} type={"text"} onChange={(e) => { setDatos({ ...datos, nombre: e.target.value }) }} />
-                            <Input for={"clave"} label={"Clave"} type={"password"} onChange={(e) => { setDatos({ ...datos, clave: e.target.value }) }} />
+                            <Input  label={"Nombre de usuario"} type={"text"} onChange={(e) => { setDatos({ ...datos, nombre: e.target.value }) }} />
+                            <Input  label={"Clave"} type={"password"} onChange={(e) => { setDatos({ ...datos, clave: e.target.value }) }} />
                             <br />
                             <button onClick={Login} type="button" className="btn btn-primary">Ingresar</button>
                         </form>
