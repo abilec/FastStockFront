@@ -37,13 +37,14 @@ export const Eliminar = async (id_producto) => {
     }
 }
 
-export const Modificar = async (id_producto, id_user) => {
+export const Modificar = async (id_producto, producto) => {
     try {
-        let data = await PATCH(url + "modificar/" + id_producto + "/" + id_user);
+        let data = await PATCH(url + "modificar/" + id_producto, producto);
         if (data) {
             return data;
         }
     } catch (error) {
         console.log("error al modificar: " + error);
+        throw error;
     }
 }
