@@ -10,7 +10,7 @@ const Inventario = () => {
     const [lista, setLista] = useState([]);
     const [modalAgregar, setModalAgregar] = useState(false);
     const [modalEditar, setModalEditar] = useState(false);
-    const [productoSelect, setProductoSelect] = useState({ });
+    const [productoSelect, setProductoSelect] = useState({});
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -52,9 +52,9 @@ const Inventario = () => {
         }
     };
 
-    const abrirModalEditar = (producto = {}) =>{
-        console.log("que se guarda en producto: "+JSON.stringify(producto));
-        setProductoSelect(JSON.stringify(producto));
+    const abrirModalEditar = (producto) => {
+        console.log("que se guarda en producto: " + JSON.stringify(producto));
+        setProductoSelect(producto);
         setModalEditar(true);
     }
 
@@ -68,16 +68,16 @@ const Inventario = () => {
                 </div>
 
                 {/* Modal */}
-                <Nuevo isOpen={modalAgregar} onClose={() => setModalAgregar(false)} actualizarLista={traerProductos}  />
-                
-                {productoSelect &&(
-                    <Editar 
-                    isOpen={modalEditar} 
-                    onClose={() => {setModalEditar(false); setProductoSelect(null);}} 
-                    actualizarLista={traerProductos} 
-                    producto={productoSelect} />)
+                <Nuevo isOpen={modalAgregar} onClose={() => setModalAgregar(false)} actualizarLista={traerProductos} />
+
+                {productoSelect && (
+                    <Editar
+                        isOpen={modalEditar}
+                        onClose={() => { setModalEditar(false); setProductoSelect(null); }}
+                        actualizarLista={traerProductos}
+                        producto={productoSelect} />)
                 }
-                
+
 
 
                 <div className="card-body">
@@ -107,7 +107,7 @@ const Inventario = () => {
                                             <button type="button" className="btn btn-outline-info" onClick={() => abrirModalEditar(p)}>
                                                 <i className="bi bi-clipboard-data"></i>
                                             </button>
-                                            
+
                                         </td>
                                     </tr>
                                 ))

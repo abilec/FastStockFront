@@ -3,34 +3,31 @@ import { useState, useEffect } from "react";
 
 const FormProducto = ({ producto = {}, onClick, onClose }) => {
     console.log("Producto recibido en FormProducto:", JSON.stringify(producto));
-    
+
     const [data, setData] = useState({
-        id_producto: Object.hasOwn(producto, 'id_producto') ? producto.id_producto : "",
-        nombre: Object.hasOwn(producto, 'nombre') ? producto.nombre : "",
-        cantidad: Object.hasOwn(producto, 'cantidad') ? producto.cantidad : "",
-        minimo: Object.hasOwn(producto, 'minimo') ? producto.minimo : "",
+        nombre: "",
+        cantidad: "",
+        minimo: "",
         usuario: {
             id_usuario: localStorage.getItem("id_usuario"),
         },
     });
 
+    // Determinar si estamos en modo edición o creación
+    const esEdicion = producto && producto.id_producto;
+
     useEffect(() => {
         console.log("Producto cambió en useEffect:", producto);
-        if (producto && typeof producto === 'object') {
-            // Usa Object.keys para verificar si el objeto tiene propiedades
-            if (Object.keys(producto).length > 0) {
-                setData({
-                    id_producto: producto.id_producto,
-                    nombre: producto.nombre,
-                    cantidad: producto.cantidad,
-                    minimo: producto.minimo,
-                    usuario: {
-                        id_usuario: localStorage.getItem("id_usuario"),
-                    }
-                })
-            }
+        if (producto && Object.keys(producto).length > 0) {
+            setData({
+                ...producto,
+                usuario: {
+                    id_usuario: localStorage.getItem("id_usuario"),
+                }
+            });
         }
     }, [producto]);
+
 
     const inputChange = (e) => {
         const { name, value } = e.target;
@@ -38,11 +35,16 @@ const FormProducto = ({ producto = {}, onClick, onClose }) => {
     };
 
     const handleSubmit = async () => {
-        console.log("Datos enviados a editarProducto:", JSON.stringify(data));
+        console.log("Datos enviados:", JSON.stringify(data));
         try {
-            await onClick(data);
+            if (esEdicion) {
+                // Para edición, simplemente pasar el objeto data completo que ya incluye el id_producto
+                await onClick(producto.id_producto, data);
+            } else {
+                // Si estamos creando un nuevo producto
+                await onClick(data);
+            }
             onClose();
-
         } catch (error) {
             console.error("Error en realizar acciones al producto:", error);
         }
