@@ -1,4 +1,4 @@
-const Modal = ({ isOpen, children, title, onClose, onClick }) => {
+const Modal = ({ isOpen, children, title, onClose }) => {
     if (!isOpen) return null;
 
     return (
