@@ -52,11 +52,11 @@ const FormProducto = ({ producto = {}, onClick, onClose }) => {
 
     return (
         <>
-            {console.log("Lo que se almacena en data", JSON.stringify(data))}
+            {console.log("Lo que se almacena en data", JSON.stringify(data.nombre))}
             <div>
-                <Input label="Nombre del producto" type="text" name="nombre" onChange={inputChange} text={data.nombre} />
-                <Input label="Cantidad actual del producto" type="number" name="cantidad" onChange={inputChange} text={data.cantidad} />
-                <Input label="Cantidad Mínima del producto" type="number" name="minimo" onChange={inputChange} text={data.minimo} />
+                <Input label="Nombre del producto" type="text" name="nombre" onChange={inputChange} value={data.nombre} />
+                <Input label="Cantidad actual del producto" type="number" name="cantidad" onChange={inputChange} value={data.cantidad} />
+                <Input label="Cantidad Mínima del producto" type="number" name="minimo" onChange={inputChange} value={data.minimo} />
             </div>
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={onClose}>
