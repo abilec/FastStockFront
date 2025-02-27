@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
-import { Listar, Eliminar } from "../Services/Producto";
+import { Listar, Eliminar, FiltrarProducto } from "../Services/Producto";
 import Semaforo from "../Components/semaforo";
 import Nuevo from "../Layouts/Nuevo";
 import Editar from "../Layouts/Editar";
@@ -14,7 +14,7 @@ const Inventario = () => {
     const [modalEditar, setModalEditar] = useState(false);
     const [productoSelect, setProductoSelect] = useState({});
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
@@ -30,13 +30,16 @@ const Inventario = () => {
         }
     }, []);
 
-    const traerProductos = async () => {
+    const traerProductos = async (data) => {
+        let datos = [];
         try {
             const id = localStorage.getItem("id_usuario");
-            if (id) {
-                const datos = await Listar(id);
-                setLista(datos.length > 0 ? datos : []);
+            if (data && data.trim().length > 0) {
+                datos = await FiltrarProducto(id, data);
+            } else if (id) {
+                datos = await Listar(id);
             }
+            setLista(datos.length > 0 ? datos : []);
         } catch (error) {
             console.error("Error al obtener lista:", error);
         }
@@ -61,7 +64,7 @@ const Inventario = () => {
         setModalEditar(true);
     }
 
-    const Salir = () =>{
+    const Salir = () => {
         localStorage.clear();
         navigate("/inicio");
     }
@@ -70,7 +73,7 @@ const Inventario = () => {
         <>
             <div className="row">
                 <div className="col">
-                    <Nav onClick={Salir} />
+                    <Nav onClose={Salir} actualizarLista={traerProductos} />
                     <br />
                 </div>
             </div>

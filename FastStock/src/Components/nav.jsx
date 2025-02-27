@@ -1,19 +1,7 @@
 import { useState } from "react"
 import { FiltrarProducto } from "../Services/Producto"
-const Nav = ({onClick}) => {
+const Nav = ({onClose, actualizarLista}) => {
     const [buscador, setBuscador] = useState("");
-
-    const Buscar = async () =>{
-        const id = localStorage.getItem("id_usuario");
-        try {
-            let rsp = await FiltrarProducto(id,buscador);
-            if(rsp){
-                console.log("Que se guarda...: "+JSON.stringify(rsp));
-            }
-        } catch (error) {
-            console.log("Error al filtrar "+error);
-        }
-    }
 
     return (
         <>
@@ -23,10 +11,10 @@ const Nav = ({onClick}) => {
 
                     <form className="d-flex" role="search">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"  onChange={(e) => {setBuscador(e.target.value)}}></input>
-                        <button className="btn btn-outline-success" type="button" onClick={Buscar}>Search</button>
+                        <button className="btn btn-outline-success" type="button" onClick={()=>actualizarLista(buscador.trim() || null)}>Search</button>
                     </form>
 
-                    <a type="button" className="btn btn-outline-dark" onClick={onClick}>Salir</a>
+                    <a type="button" className="btn btn-outline-dark" onClick={onClose}>Salir</a>
 
                 </div>
             </nav>

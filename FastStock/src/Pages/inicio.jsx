@@ -12,7 +12,7 @@ const Inicio = () => {
             if (resp.token) {
                 localStorage.setItem("token", resp.token);
                 navigate("/inventario");
-            }else{
+            } else {
                 navigate("/inicio");
                 console.log("Error al autenticar...");
             }
@@ -23,18 +23,20 @@ const Inicio = () => {
 
     return (
         <>
-            <div>
-                <div className="card" id="cardInicio">
-                    <div className="card-title">
-                        <h1>Iniciar sesión</h1>
-                    </div>
-                    <div className="card-body" >
-                        <form>
-                            <Input  label={"Nombre de usuario"} type={"text"} onChange={(e) => { setDatos({ ...datos, nombre: e.target.value }) }} />
-                            <Input  label={"Clave"} type={"password"} onChange={(e) => { setDatos({ ...datos, clave: e.target.value }) }} />
-                            <br />
-                            <button onClick={Login} type="button" className="btn btn-primary">Ingresar</button>
-                        </form>
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <div className="card" id="cardInicio">
+                        <div className="card-title">
+                            <h1>Iniciar sesión</h1>
+                        </div>
+                        <div className="card-body" >
+                            <form>
+                                <Input label={"Nombre de usuario"} type={"text"} onChange={(e) => { setDatos({ ...datos, nombre: e.target.value }) }} />
+                                <Input label={"Clave"} type={"password"} onChange={(e) => { setDatos({ ...datos, clave: e.target.value }) }} />
+                                <br />
+                                <button onClick={Login} type="button" className="btn btn-primary">Ingresar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
