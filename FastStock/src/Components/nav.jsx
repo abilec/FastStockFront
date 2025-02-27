@@ -6,9 +6,9 @@ const Nav = ({onClick}) => {
     const Buscar = async () =>{
         const id = localStorage.getItem("id_usuario");
         try {
-            let rsp = await FiltrarProducto(buscador,id);
+            let rsp = await FiltrarProducto(id,buscador);
             if(rsp){
-                console.log("Que se guarda...: "+rsp);
+                console.log("Que se guarda...: "+JSON.stringify(rsp));
             }
         } catch (error) {
             console.log("Error al filtrar "+error);

@@ -13,9 +13,9 @@ export const Listar = async (id_usuario) => {
     }
 }
 
-export const FiltrarProducto = async (id_usuario, data) => {
+export const FiltrarProducto = async (id_usuario, filtro) => {
     try {
-        let rsp = await GET(url + id_usuario, data);
+        let rsp = await POST(url + id_usuario +"/"+ filtro);
         if (rsp) {
             return rsp;
         } else {

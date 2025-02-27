@@ -55,9 +55,9 @@ export async function GET(url,data) {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        if(data){
-            body: JSON.stringify(data)
-        }
+        
+        body: JSON.stringify(data)
+        
     })
         .then((res) => res.json())
         .then((res) => res)
