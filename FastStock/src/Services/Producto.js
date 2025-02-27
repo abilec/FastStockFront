@@ -11,8 +11,19 @@ export const Listar = async (id_usuario) => {
     } catch (error) {
         console.log("error al traer la lista: " + error);
     }
+}
 
-
+export const FiltrarProducto = async (id_usuario, data) => {
+    try {
+        let rsp = await GET(url + id_usuario, data);
+        if (rsp) {
+            return rsp;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        console.log("error al traer la lista: " + error);
+    }
 }
 
 export const Agregar = async (producto) => {
