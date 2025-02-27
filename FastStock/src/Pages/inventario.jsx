@@ -52,14 +52,13 @@ const Inventario = () => {
     const borrarProducto = async (id_producto) => {
         try {
             await Eliminar(id_producto);
-            traerProductos(); // Refrescar la lista después de eliminar
+            traerProductos(); 
         } catch (error) {
             console.error("Error al eliminar el producto:", error);
         }
     };
 
     const abrirModalEditar = (producto) => {
-        console.log("que se guarda en producto: " + JSON.stringify(producto));
         setProductoSelect(producto);
         setModalEditar(true);
     }
@@ -125,7 +124,7 @@ const Inventario = () => {
                                                     </button>
                                                     &nbsp;
                                                     <button type="button" className="btn btn-outline-info" onClick={() => abrirModalEditar(p)}>
-                                                    <i class="bi bi-pencil-square"></i>
+                                                    <i className="bi bi-pencil-square"></i>
                                                     </button>
 
                                                 </td>

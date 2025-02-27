@@ -22,10 +22,10 @@ const Nav = ({ onClose, actualizarLista }) => {
 
                     <form className="d-flex" role="search">
                         <input className="form-control me-2" type="search" placeholder="Buscar por nombre" aria-label="Search" onChange={inputChange}></input>
-                        <button className="btn btn-outline-success" type="button" onClick={() => actualizarLista(buscador.trim() || null)}><i class="bi bi-search"></i></button>
+                        <button className="btn btn-outline-success" type="button" onClick={() => actualizarLista(buscador.trim() || null)}><i className="bi bi-search"></i></button>
                     </form>
 
-                    <a type="button" className="btn btn-outline-dark" onClick={onClose}>Salir <i class="bi bi-box-arrow-in-left"></i></a>
+                    <a type="button" className="btn btn-outline-dark" onClick={onClose}>Salir <i className="bi bi-box-arrow-in-left"></i></a>
 
                 </div>
             </nav>

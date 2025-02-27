@@ -7,9 +7,8 @@ const Nuevo = ({ isOpen, onClose, actualizarLista }) => {
     const agregarProducto = async (producto) => {
         try {
             let rsp = await Agregar(producto);
-            console.log("a ver ", rsp);
             if (rsp) {
-                actualizarLista(); // Actualiza la lista de productos después de agregar
+                actualizarLista(); 
             } else {
                 console.log("Error en ageragr producto en NUEVO");
             }
