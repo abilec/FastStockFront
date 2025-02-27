@@ -125,7 +125,7 @@ const Inventario = () => {
                                                     </button>
                                                     &nbsp;
                                                     <button type="button" className="btn btn-outline-info" onClick={() => abrirModalEditar(p)}>
-                                                        <i className="bi bi-clipboard-data"></i>
+                                                    <i class="bi bi-pencil-square"></i>
                                                     </button>
 
                                                 </td>
