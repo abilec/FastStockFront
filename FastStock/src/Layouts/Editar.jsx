@@ -6,9 +6,6 @@ const Editar = ({ isOpen, onClose, actualizarLista, producto }) => {
 
     const editarProducto = async (id, productoData) => {
         try {
-            console.log(`Intentando modificar producto con ID: ${id}`);
-            console.log("Datos enviados:", productoData);
-
             if (id) {
                 await Modificar(id, productoData);
                 actualizarLista();

@@ -48,13 +48,16 @@ export async function POST(url, data) {
 
 
 
-export async function GET(url) {
+export async function GET(url,data) {
     return await fetch(backendurl + url, {
         method: 'GET',
         mode: 'cors',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+        },
+        
+        body: JSON.stringify(data)
+        
     })
         .then((res) => res.json())
         .then((res) => res)
